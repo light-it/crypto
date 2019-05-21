@@ -1,0 +1,17 @@
+.wrap-form {
+  width: 320px;
+  margin: 300px auto 0;
+}
+
+.title {
+  text-align: center;
+}
+
+mat-form-field, .btn-submit {
+  width: 100%;
+}
+
+.server-error {
+  text-align: center;
+  color: #f44336;
+}

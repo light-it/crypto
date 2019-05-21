@@ -1,0 +1,19 @@
+.nav {
+
+  &-wrap {
+    background: #3f51b5;
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
+
+  &-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.user-email {
+  color: #ffffff;
+}

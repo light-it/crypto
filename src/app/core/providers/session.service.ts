@@ -5,7 +5,7 @@ export class SessionService {
    * @returns object User or null
    */
   public static get userInfo() {
-    return JSON.parse(localStorage.getItem('ltp.currentUser'));
+    return JSON.parse(localStorage.getItem('app.currentUser'));
   }
 
   /**
@@ -13,7 +13,7 @@ export class SessionService {
    * @param data - object User
    */
   public static set userInfo(data) {
-    localStorage.setItem('ltp.currentUser', JSON.stringify(data));
+    localStorage.setItem('app.currentUser', JSON.stringify(data));
   }
 
   /**
@@ -21,16 +21,16 @@ export class SessionService {
    * @returns token
    */
   public static get token() {
-    const data = JSON.parse(localStorage.getItem('ltp.currentUser'));
+    const data = JSON.parse(localStorage.getItem('app.currentUser'));
     return data ? data.key : null;
   }
 
   public static set permissions(data) {
-    localStorage.setItem('ltp.permissions', data);
+    localStorage.setItem('app.permissions', data);
   }
 
   public static get permissions() {
-    return JSON.parse(localStorage.getItem('ltp.permissions'));
+    return JSON.parse(localStorage.getItem('app.permissions'));
   }
 
   /**
@@ -38,11 +38,11 @@ export class SessionService {
    * @param key - unique users key
    */
   public static set identifier(key) {
-    localStorage.setItem('ltp.identifier', JSON.stringify(key));
+    localStorage.setItem('app.identifier', JSON.stringify(key));
   }
 
   public static get identifier() {
-    return JSON.parse(localStorage.getItem('ltp.identifier'));
+    return JSON.parse(localStorage.getItem('app.identifier'));
   }
 
   public static clearStorage() {
