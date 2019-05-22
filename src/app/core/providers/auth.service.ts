@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   private checkPermissions(data: ILogin): boolean {
-    return !!(data.email === this.email && data.password && this.password);
+    return !!(data.email === this.email && data.password && this.password === this.password);
   }
 
 
