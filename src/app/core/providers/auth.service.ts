@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
-  private email = 'admin@admin';
+  private email = 'admin@admin.com';
   private password = '12345';
 
   constructor(private router: Router) {
