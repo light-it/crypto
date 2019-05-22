@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ILogin } from '../shared/login-model';
 import { AuthService } from '../../core/providers/auth.service';
 import { Router } from '@angular/router';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public login: FormGroup;
   public hide = true;
   public serverError: string;
+  private componentActive = true;
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private router: Router) { }
@@ -36,13 +38,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public onSubmit(form: FormGroup) {
+  public onSubmit(form: FormGroup): void {
     if (form.valid) {
-      console.log(form.value);
       const data: ILogin = form.value;
       this.authService.signIn(data)
+        .pipe(
+          takeWhile(() => this.componentActive)
+        )
         .subscribe((res: boolean) => {
-          console.log(res);
           if (res) {
             this.router.navigate(['home']);
             this.serverError = '';
@@ -59,5 +62,9 @@ export class LoginComponent implements OnInit {
 
   public get password() {
     return this.login.get('password');
+  }
+
+  ngOnDestroy(): void {
+    this.componentActive = false;
   }
 }

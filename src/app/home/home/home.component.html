@@ -1,4 +1,6 @@
 <app-header></app-header>
-<p>
-  home works!
-</p>
+<div class="list-wrap" *ngIf="listCrypto$ | async as data">
+  <app-card *ngFor="let crypto of data.listCrypto"
+            [itemCrypto]="crypto"
+  ></app-card>
+</div>

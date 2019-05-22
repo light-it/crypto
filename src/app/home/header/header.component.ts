@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   getUser(): void {
     this.profileService.profileSource$
       .subscribe((user) => {
-        console.log(user);
         this.user = user;
       });
   }
